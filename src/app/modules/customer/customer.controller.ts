@@ -18,7 +18,7 @@ const getAll = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Customers retrieved successfully',
+    message: 'Customers fetched successfully',
     data: result,
   });
 });
@@ -28,7 +28,7 @@ const getOne = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Customer retrieved successfully',
+    message: 'Customer fetched successfully',
     data: result,
   });
 });
