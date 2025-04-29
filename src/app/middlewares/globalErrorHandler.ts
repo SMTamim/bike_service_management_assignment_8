@@ -21,7 +21,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     },
   ];
   let simplifiedError = {
-    statusCode: 500,
+    status: 500,
     message,
     error: errorSources,
   };
@@ -41,7 +41,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
       message: err?.message,
     };
   }
-  res.status(simplifiedError.statusCode).json({
+  res.status(simplifiedError.status).json({
     success: false,
     ...simplifiedError,
   });

@@ -30,7 +30,7 @@ CREATE TABLE "service_records" (
     "serviceDate" TIMESTAMP(3) NOT NULL,
     "completionDate" TIMESTAMP(3),
     "description" TEXT NOT NULL,
-    "status" "ServiceStatus" NOT NULL DEFAULT 'IN_PROGRESS',
+    "status" TEXT NOT NULL,
 
     CONSTRAINT "service_records_pkey" PRIMARY KEY ("serviceId")
 );

@@ -6,7 +6,7 @@ import { CustomerServices } from './customer.service';
 const createOne = catchAsync(async (req, res) => {
   const result = await CustomerServices.createOneIntoDB(req.body);
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: httpStatus.CREATED,
     success: true,
     message: 'Customer created successfully',
     data: result,

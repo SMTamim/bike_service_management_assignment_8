@@ -20,7 +20,6 @@ model Customer {
   phone      String
   createdAt  DateTime @default(now())
   bikes      Bike[]
-  
 
   @@map("customers")
 }
@@ -38,13 +37,13 @@ model Bike {
 }
 
 model ServiceRecord {
-  serviceId      String        @id @default(uuid())
+  serviceId      String    @id @default(uuid())
   bikeId         String
   serviceDate    DateTime
   completionDate DateTime?
   description    String
-  status         ServiceStatus @default(IN_PROGRESS)
-  bike           Bike          @relation(fields: [bikeId], references: [bikeId], onDelete: Cascade)
+  status         String
+  bike           Bike      @relation(fields: [bikeId], references: [bikeId], onDelete: Cascade)
 
   @@map("service_records")
 }

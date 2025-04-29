@@ -7,9 +7,8 @@ type TResponse<T> = {
 };
 
 const sendResponse = <T>(res: Response, responseData: TResponse<T>) => {
-  const response: TResponse<T> = {
+  const response: Partial<TResponse<T>> = {
     success: responseData.success,
-    statusCode: responseData.statusCode,
     message: responseData.message,
   };
   if (responseData.data && Object.keys(responseData.data).length > 0) {

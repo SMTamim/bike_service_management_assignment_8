@@ -4,7 +4,7 @@ import AppError from './AppError';
 
 const handleAppError = (error: AppError): TGenericErrorResponse => {
   return {
-    statusCode: error.statusCode,
+    status: error.statusCode,
     message: error.message,
     stack: config.NODE_ENV === 'development' ? error.stack : null,
     error: [],

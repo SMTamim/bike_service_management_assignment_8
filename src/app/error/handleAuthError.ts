@@ -3,7 +3,7 @@ import AuthError from './AuthError';
 
 const handleAuthError = (error: AuthError): TGenericErrorResponse => {
   return {
-    statusCode: error.statusCode,
+    status: error.statusCode,
     message: error.message,
     error: [],
   };

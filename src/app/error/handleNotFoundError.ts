@@ -3,7 +3,7 @@ import NotFoundError from './NotFoundError';
 
 const handleNotFoundError = (error: NotFoundError): TGenericErrorResponse => {
   return {
-    statusCode: error.statusCode,
+    status: error.statusCode,
     message: error.message,
     error: [],
   };

@@ -6,9 +6,9 @@ import { BikeServices } from './bike.service';
 const createOne = catchAsync(async (req, res) => {
   const result = await BikeServices.createOneIntoDB(req.body);
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: httpStatus.CREATED,
     success: true,
-    message: 'Bike added` successfully',
+    message: 'Bike added successfully',
     data: result,
   });
 });
