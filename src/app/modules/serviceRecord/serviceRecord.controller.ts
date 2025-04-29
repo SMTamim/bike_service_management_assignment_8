@@ -47,7 +47,7 @@ const getOne = catchAsync(async (req, res) => {
 const completeServiceRecord = catchAsync(async (req, res) => {
   const result = await ServiceRecordServices.completeServiceRecordIntoDB(
     req.params.id,
-    req.body
+    req.body,
   );
   sendResponse(res, {
     statusCode: httpStatus.OK,

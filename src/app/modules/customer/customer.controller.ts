@@ -34,7 +34,10 @@ const getOne = catchAsync(async (req, res) => {
 });
 
 const updateOne = catchAsync(async (req, res) => {
-  const result = await CustomerServices.updateOneIntoDB(req.params.id, req.body);
+  const result = await CustomerServices.updateOneIntoDB(
+    req.params.id,
+    req.body,
+  );
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

@@ -8,7 +8,7 @@ const router = express.Router();
 router.post(
   '/',
   validateRequest(CustomerValidations.createCustomerSchema),
-  CustomerControllers.createOne
+  CustomerControllers.createOne,
 );
 
 router.get('/', CustomerControllers.getAll);
@@ -17,7 +17,7 @@ router.get('/:id', CustomerControllers.getOne);
 router.put(
   '/:id',
   validateRequest(CustomerValidations.updateCustomerSchema),
-  CustomerControllers.updateOne
+  CustomerControllers.updateOne,
 );
 
 router.delete('/:id', CustomerControllers.deleteOne);

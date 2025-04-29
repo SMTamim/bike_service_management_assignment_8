@@ -14,7 +14,7 @@ const prisma = new PrismaClient();
  */
 
 const createOneIntoDB = async (
-  payload: ServiceRecord
+  payload: ServiceRecord,
 ): Promise<ServiceRecord> => {
   const { bikeId, serviceDate, description, status } = payload;
   console.log({ bikeId, serviceDate, description, status });
@@ -53,9 +53,16 @@ const getPendingOrOverdueServicesFromDB = async (): Promise<
 
   const result = await prisma.serviceRecord.findMany({
     where: {
-      OR: [
-        { status: { in: ['pending', 'in-progress'] } },
-        { serviceDate: { lt: oneWeekAgo } },
+      AND: [
+        {
+          OR: [
+            { status: { in: ['pending', 'in-progress'] } },
+            { serviceDate: { lt: oneWeekAgo } },
+          ],
+        },
+        {
+          status: { not: 'done' },
+        },
       ],
     },
   });
@@ -72,14 +79,14 @@ const getPendingOrOverdueServicesFromDB = async (): Promise<
  * @returns The service record object, or null if not found.
  */
 const getOneFromDB = async (
-  serviceId: string
+  serviceId: string,
 ): Promise<ServiceRecord | null> => {
   const result = await prisma.serviceRecord.findFirst({
     where: { serviceId },
   });
   if (!result)
     throw new NotFoundError(
-      `Service record with the provided id: '${serviceId}'`
+      `Service record with the provided id: '${serviceId}'`,
     );
   return result;
 };
@@ -98,14 +105,14 @@ const getOneFromDB = async (
  */
 const completeServiceRecordIntoDB = async (
   serviceId: string,
-  payload: Partial<Pick<ServiceRecord, 'completionDate'>>
+  payload: Partial<Pick<ServiceRecord, 'completionDate'>>,
 ): Promise<ServiceRecord | null> => {
   const check = await prisma.serviceRecord.findFirst({
     where: { serviceId },
   });
   if (!check)
     throw new NotFoundError(
-      `Service record with the provided id: '${serviceId}'`
+      `Service record with the provided id: '${serviceId}'`,
     );
 
   const completionDate = payload?.completionDate ?? new Date();

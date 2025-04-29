@@ -8,7 +8,7 @@ const router = express.Router();
 router.post(
   '/',
   validateRequest(ServiceRecordValidations.createServiceRecordSchema),
-  ServiceControllers.createOne
+  ServiceControllers.createOne,
 );
 
 router.get('/', ServiceControllers.getAll);

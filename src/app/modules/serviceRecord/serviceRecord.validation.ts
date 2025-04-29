@@ -13,7 +13,7 @@ const createServiceRecordSchema = z.object({
     description: z
       .string({ required_error: 'Description is required' })
       .min(1, { message: 'Description cannot be empty' }),
-    status: z.enum(['pending', 'in-progress', 'completed']),
+    status: z.enum(['pending', 'in-progress', 'done']),
   }),
 });
 

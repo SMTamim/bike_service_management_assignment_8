@@ -21,7 +21,8 @@ const createOneIntoDB = async (payload: Customer): Promise<Customer> => {
       },
     });
     return result;
-  } catch (e) {
+  } catch (error) {
+    console.log(error);
     throw new AppError(httpStatus.CONFLICT, 'Email already exists');
   }
 };
@@ -71,7 +72,7 @@ const getOneFromDB = async (customerId: string): Promise<Customer | null> => {
  */
 const updateOneIntoDB = async (
   customerId: string,
-  payload: Partial<Pick<Customer, 'name' | 'phone'>>
+  payload: Partial<Pick<Customer, 'name' | 'phone'>>,
 ): Promise<Customer | null> => {
   if (
     !(await prisma.customer.findFirst({
@@ -99,7 +100,7 @@ const updateOneIntoDB = async (
  * @returns The deleted customer object, or null if not found.
  */
 const deleteOneFromDB = async (
-  customerId: string
+  customerId: string,
 ): Promise<Customer | null> => {
   if (
     !(await prisma.customer.findFirst({
@@ -108,10 +109,10 @@ const deleteOneFromDB = async (
   ) {
     throw new NotFoundError(`Customer with the provided id: '${customerId}'`);
   }
-  const result = await prisma.customer.delete({
+  await prisma.customer.delete({
     where: { customerId },
   });
-  return result;
+  return null;
 };
 
 export const CustomerServices = {

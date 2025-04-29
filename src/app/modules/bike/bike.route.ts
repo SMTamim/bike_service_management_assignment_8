@@ -8,7 +8,7 @@ const router = express.Router();
 router.post(
   '/',
   validateRequest(BikeValidations.createBikeSchema),
-  BikeControllers.createOne
+  BikeControllers.createOne,
 );
 
 router.get('/', BikeControllers.getAll);

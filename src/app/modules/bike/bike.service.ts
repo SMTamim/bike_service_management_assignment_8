@@ -13,6 +13,10 @@ const prisma = new PrismaClient();
  */
 const createOneIntoDB = async (payload: Bike): Promise<Bike> => {
   const { brand, model, year, customerId } = payload;
+
+  if (!(await prisma.customer.findFirst({ where: { customerId } }))) {
+    throw new NotFoundError(`Customer with id: ${customerId}`);
+  }
   const result = await prisma.bike.create({
     data: { brand, model, year, customerId },
   });
